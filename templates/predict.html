@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Predict Stock Price{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="prediction-card">
+        <h1>Stock Price Prediction</h1>
+        <form method="POST" class="form">
+            <div class="form-group">
+                <label for="ticker">Ticker:</label>
+                <input type="text" id="ticker" name="ticker" placeholder="Enter stock ticker" class="retro-input" required>
+            </div>
+            <div class="form-group">
+                <label for="date">Date (YYYY-MM-DD):</label>
+                <input type="date" id="date" name="date" class="retro-input" required>
+            </div>
+            <button type="submit" class="btn retro-btn">Predict</button>
+        </form>
+
+        {% if predicted_price %}
+        <div class="result retro-result">
+            <h2>Prediction Result</h2>
+            <p><strong>Stock:</strong> {{ ticker }}</p>
+            <p><strong>Date:</strong> {{ date }}</p>
+            <p><strong>Predicted Price:</strong> ${{ predicted_price }}</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+yfinance
+pandas
+Flask
+Flask-SQLAlchemy
+sqlalchemy
+PyMySQL
+Flask-Bcrypt
+Flask-Login
+Flask-WTF
+scikit-learn
+tensorflow
+joblib
+email-validator
+mysql-connector-python

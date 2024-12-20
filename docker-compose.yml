@@ -1,0 +1,23 @@
+version: "3"
+services:
+  app:
+    build: ./app
+    ports:
+      - "5000:5000"  # Map host port to container port
+    depends_on:
+      - db  # Ensures the DB starts before the app
+    environment:
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_USERNAME=root
+      - DB_PASSWORD=root
+      - DB_NAME=stock_prediction
+
+  db:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root  # Root password for the MySQL DB
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/  # Run initialization SQL scripts if any

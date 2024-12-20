@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Mystery+Quest&display=swap" rel="stylesheet">
+    
+    <!-- Link to styles.css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+    <title>{% block title %}Stock Predictor WebApp{% endblock %}</title>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="{{ url_for('main.home') }}" class="navbar-logo">
+                <img src="{{ url_for('static', filename='images/logo_emsi.png') }}" alt="Logo" class="logo">
+            </a>
+            <ul class="navbar-links">
+                <li><a href="{{ url_for('main.home') }}" class="nav-link">Home</a></li>
+
+                <!-- Corrected links to include blueprint 'main' where needed -->
+                <li><a href="{{ url_for('main.register') }}" class="nav-link">Register</a></li>
+                <li><a href="{{ url_for('main.login') }}" class="nav-link">Login</a></li>
+                <li><a href="{{ url_for('main.predict') }}" class="nav-link">Predict</a></li>
+                
+                {% if session.get('user') %}
+                    <li><a href="{{ url_for('main.logout') }}" class="nav-link">Logout</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Retro Stock Predictor. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Chatbox -->
+    <div class="chatbox">
+        <div class="chatbox-header">Chat</div>
+        <div class="chatbox-body" id="chatbox-body">
+            <!-- Chat messages appear here -->
+        </div>
+        <div class="chatbox-footer">
+            <form id="chat-form">
+                <div class="input-group">
+                    <input type="text" id="user_input" class="form-control" placeholder="Type your message...">
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add your JavaScript file -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
